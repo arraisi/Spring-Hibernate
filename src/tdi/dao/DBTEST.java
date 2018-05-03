@@ -81,17 +81,17 @@ public class DBTEST {
     }
     
     public Student findByIdStudent(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Student s WHERE s.id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s WHERE s.id = :id").setParameter("id", id);
         return (Student) query.list().get(0);
     }
     
     public Alamat findByIdAlamat(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Alamat a WHERE a.id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Alamat a WHERE a.id = :id").setParameter("id", id);
         return (Alamat) query.list().get(0);
     }
     
     public Kecamatan findByIdKecamatan(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Kecamatan k WHERE k.id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Kecamatan k WHERE k.id = :id").setParameter("id", id);
         return (Kecamatan) query.list().get(0);
     }
     /*
