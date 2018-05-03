@@ -10,10 +10,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import tdi.model.Address;
+import tdi.model.Alamat;
 import tdi.model.BungaFlat;
+import tdi.model.Kecamatan;
+import tdi.model.Person;
+import tdi.model.Student;
 
 @Configuration
 @ComponentScan(basePackages = { "tdi.service","tdi.dao" })
@@ -32,10 +37,10 @@ public class KonfigurasiApps {
                 Properties props = new Properties();
                 props.put("hibernate.show_sql", true);
                 props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
-                props.put("hibernate.hbm2ddl.auto", "create");
+                props.put("hibernate.hbm2ddl.auto", "update");
                 
                 factoryBean.setHibernateProperties(props);
-                factoryBean.setAnnotatedClasses(BungaFlat.class);
+                factoryBean.setAnnotatedClasses(BungaFlat.class, Person.class, Address.class, Alamat.class, Kecamatan.class, Student.class);
                 return factoryBean;
     }
     

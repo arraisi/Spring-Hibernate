@@ -21,13 +21,13 @@ public class BungaFlat {
     @Column(name = "ID")
     Integer id;
     
-    //@Column(name = "FirstName")
+    @Column
     String FirstName;
     
-    //@Column(name = "LastName")
+    @Column(name = "LastName")
     String LastName;
     
-    //@Column(name = "ShipAddress")
+    @Column(name = "ShipAddress")
     String ShipAddress;
 
     public int getId() {
@@ -64,7 +64,7 @@ public class BungaFlat {
 
     @Override
     public String toString() {
-        return "BungaFlat{" + "id=" + id + ",Name=" + FirstName + " " + LastName + ", ShipAddress=" + ShipAddress + '}';
+        return "BungaFlat{" + "ID= " + id + ",FirstName= " + FirstName + ",FirstName= " + LastName + ", ShipAddress= " + ShipAddress + '}';
     }
 
 }

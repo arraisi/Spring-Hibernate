@@ -19,13 +19,18 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import tdi.model.Alamat;
 import tdi.model.BungaFlat;
+import tdi.model.Kecamatan;
+import tdi.model.Person;
+import tdi.model.Student;
 
 /**
  *
  * @author arrai
  */
 @Repository //MENANDAKAN CLASS YANG AKAN DIGUNAKAN
+@Transactional(readOnly =true)
 public class DBTEST {
     @Autowired //MENCARI JBDCTEMPLATE
     JdbcTemplate jdbcTemplate;
@@ -41,15 +46,61 @@ public class DBTEST {
         Query query = sessionFactory.getCurrentSession().createQuery("from BungaFlat");
         return query.list();
     }
-    
+    /*
     @Transactional(readOnly =false)
     public void simpanHibernate(BungaFlat bungaFlat){
         sessionFactory.getCurrentSession().saveOrUpdate(bungaFlat);
     }
+    //UNTUK MAPPING HIBERNATE
+    @Transactional(readOnly =false)
+    public void simpanHibernate(Person person){
+        sessionFactory.getCurrentSession().saveOrUpdate(person);
+    }
+    */
+    
+    //UNTUK HIBERNATE STUDENT
+    @Transactional(readOnly =false)
+    public void simpanHibernate(Student student){
+        sessionFactory.getCurrentSession().saveOrUpdate(student);
+    }
+    
+    @Transactional(readOnly =false)
+    public void simpanHibernateAlamat(Alamat alamat){
+        sessionFactory.getCurrentSession().saveOrUpdate(alamat);
+    }
+    
+    @Transactional(readOnly =false)
+    public void simpanHibernateKecamatan(Kecamatan kecamatan){
+        sessionFactory.getCurrentSession().saveOrUpdate(kecamatan);
+    }
+    
+    
+    @Transactional(readOnly =false)
+    public void deleteHibernate(Student student){
+        sessionFactory.getCurrentSession().delete(student);
+    }
+    
+    public Student findByIdStudent(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s WHERE s.id = :id");
+        return (Student) query.list().get(0);
+    }
+    
+    public Alamat findByIdAlamat(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Alamat a WHERE a.id = :id");
+        return (Alamat) query.list().get(0);
+    }
+    
+    public Kecamatan findByIdKecamatan(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Kecamatan k WHERE k.id = :id");
+        return (Kecamatan) query.list().get(0);
+    }
+    /*
     public BungaFlat findByIdHibernate(int id, String FirstName){
         Query query = sessionFactory.getCurrentSession().createQuery("from BungaFlat b WHERE b.id = :id");
         return (BungaFlat) query.list().get(0);
     }
+    */
+    
 //======================================================================================================================    
     
     //MENGAMBIL DATA DARI DATABASE LALU DI TAMPUNG DI VARIABLE YANG ADA DI CLASS BUNGAFLAT
