@@ -12,10 +12,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tdi.model.BungaFlat;
 
 @Configuration
 @ComponentScan(basePackages = { "tdi.service","tdi.dao" })
+@EnableTransactionManagement
 public class KonfigurasiApps {
 
     //@Autowired
